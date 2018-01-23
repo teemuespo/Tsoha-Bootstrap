@@ -6,6 +6,7 @@ Yleisiä linkkejä:
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/tuotehaku
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/tuotteet
 * https://tespo.users.cs.helsinki.fi/tikaharjoitus/tietokantayhteys
+
 * [Linkki dokumentaatiooni](https://www.github.com)
 
 ## Työn aihe
