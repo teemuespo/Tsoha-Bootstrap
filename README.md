@@ -1,7 +1,6 @@
 # Tietokantasovelluksen esittelysivu
 
 Yleisiä linkkejä:
-
 * [Linkkejä sovellukseeni]: (http://tespo.users.cs.helsinki.fi/tikaharjoitus/kaupat)
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/etusivu
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/tuotehaku
