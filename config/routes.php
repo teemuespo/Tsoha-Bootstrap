@@ -19,3 +19,8 @@
   $routes->get('/tuotteet', function() {
     HelloWorldController::tuotteet();
   });
+
+  $routes->get('/kauppayhtymat', function() {
+    HelloWorldController::kauppayhtymat();
+    kauppayhtyma_controller::index();
+  });
