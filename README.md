@@ -11,7 +11,7 @@ Yleisiä linkkejä:
 * [Linkki sovellukseeni](http://tespo.users.cs.helsinki.fi/tikaharjoitus/kaupat)
 
 * [Linkki dokumentaatiooni](https://github.com/teemuespo/Tsoha-Bootstrap/tree/master/doc)
->>>>>>> 015327e25834b8f8ef486d7bdefe77b35b93bd70
+
 
 ## Työn aihe
 
