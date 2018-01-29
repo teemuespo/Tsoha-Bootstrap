@@ -8,7 +8,7 @@
 
 
 Linkkejä sovelluksen eri osiin:
-*  (http://tespo.users.cs.helsinki.fi/tikaharjoitus/kaupat)
+* http://tespo.users.cs.helsinki.fi/tikaharjoitus/kaupat
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/etusivu
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/tuotehaku
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/tuotteet
