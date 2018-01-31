@@ -9,12 +9,8 @@
 
     public static function sandbox(){
       // Testaa koodiasi täällä
-      View::make('helloworld.html');
-      $kesko = Kauppayhtyma::find(1);
-      $kauppayhtymat = Kauppayhtyma::all();
       // Kint-luokan dump-metodi tulostaa muuttujan arvon
-      Kint::dump($kauppayhtymat);
-      Kint::dump($kesko);
+      View::make('helloworld.html');
     }
 
     public static function kaupat(){
@@ -32,8 +28,23 @@
       View::make('/suunnitelmat/tuotteet.html');
     }
 
+    public static function uusi_tuote(){
+      // Testaa koodiasi täällä
+      View::make('/suunnitelmat/uusi_tuote.html');
+    }
+
+    public static function uusi_kauppa(){
+      // Testaa koodiasi täällä
+      View::make('/suunnitelmat/uusi_kauppa.html');
+    }
+
     public static function kauppayhtymat(){
       // Testaa koodiasi täällä
       View::make('/suunnitelmat/kauppayhtymat.html');
+    }
+
+    public static function uusi_kauppayhtyma(){
+      // Testaa koodiasi täällä
+      View::make('/suunnitelmat/uusi_kauppayhtyma.html');
     }
   }

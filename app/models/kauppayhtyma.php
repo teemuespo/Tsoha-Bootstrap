@@ -4,7 +4,7 @@ class Kauppayhtyma extends BaseModel{
     public $id, $nimi, $bonus;
     // Konstruktori
     public function __construct($attributes){
-    	parent::__construct($attributes);
+    	parent:: __construct($attributes);
     }
     public static function all(){
     	 // Alustetaan kysely tietokantayhteydellämme
@@ -43,5 +43,15 @@ class Kauppayhtyma extends BaseModel{
 	    }
 
 	    return null;
-	  }
+	 
+	public function save(){
+	    // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
+	    $query = DB::connection()->prepare('INSERT INTO Kauppayhtyma (nimi, bonus) VALUES (:nimi, :bonus) RETURNING id');
+	    // Muistathan, että olion attribuuttiin pääse syntaksilla $this->attribuutin_nimi
+	    $query->execute(array('nimi' => $this->nimi, 'bonus' => $this->bonus));
+	    // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
+	    $row = $query->fetch();
+	    // Asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
+	    $this->id = $row['id'];
+	  }    
 }
