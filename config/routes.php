@@ -9,21 +9,18 @@
   });
 
   $routes->get('/kaupat', function() {
-    HelloWorldController::kaupat();
     KauppaController::index();
   });
 
   $routes->get('/tuotehaku', function() {
-    HelloWorldController::tuotehaku();
+    TuoteController::tuotehaku();
   });
 
   $routes->get('/tuotteet', function() {
-    HelloWorldController::tuotteet();
     TuoteController::index();
   });
 
   $routes->get('/kauppayhtymat', function() {
-    HelloWorldController::kauppayhtymat();
     KauppayhtymaController::index();
   });
 
@@ -31,18 +28,46 @@
     KauppaController::store();
   });
 
+  $routes->post('/tuotteet', function() {
+    TuoteController::store();
+  });
+
+  $routes->post('/kauppayhtymat', function() {
+    KauppayhtymaController::store();
+  });
+
   $routes->get('/kaupat/uusi', function() {
-    HelloWorldController::uusi_kauppa();
+    KauppaController::uusi_kauppa();
+  });
+
+  $routes->get('/kaupat/:id', function($id) {
+    KauppaController::show($id);
   });
 
   $routes->get('/kauppayhtymat/:id', function($id) {
     KauppayhtymaController::show($id);
   });
 
+  $routes->get('/kauppayhtymat/uusi', function($id) {
+    KauppayhtymaController::show($id);
+  });
+
+  $routes->get('/tuotteet/:id', function($id) {
+    TuoteController::show($id);
+  });
+
   $routes->get('/tuotteet/uusi', function() {
-    HelloWorldController::uusi_kauppa();
+    TuoteController::uusi_tuote();
   });
 
   $routes->get('/kauppayhtymat/uusi', function() {
-    HelloWorldController::uusi_kauppayhtyma();
+    KauppayhtymaController::uusi_kauppayhtyma();
+  });
+
+  $routes->get('/uusi_ostotapahtuma', function() {
+    OstotapahtumaController::uusi_ostotapahtuma();
+  });
+
+  $routes->post('/uusi_ostotapahtuma', function() {
+    OstotapahtumaController::store();
   });

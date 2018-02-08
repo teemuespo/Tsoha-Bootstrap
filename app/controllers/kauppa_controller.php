@@ -1,10 +1,19 @@
 <?php
 class KauppaController extends BaseController{
+  public static function uusi_kauppa(){
+      View::make('/suunnitelmat/kaupat/uusi_kauppa.html');
+    }
   public static function index(){
     // Haetaan kaikki kaupat tietokannasta
     $kaupat = Kauppa::all();
     // Renderöidään views/suunnitelmat kansiossa sijaitseva tiedosto kauppa.html muuttujan $kaupat datalla
-    View::make('suunnitelmat/kauppa.html', array('kaupat' => $kaupat));
+    View::make('suunnitelmat/kaupat/kaupat.html', array('kaupat' => $kaupat));
+  }
+  public static function show($id){
+    // Haetaan kaikki kaupat tietokannasta
+    $kauppa = Kauppa::find($id);
+    // Renderöidään views/suunnitelmat kansiossa sijaitseva tiedosto kauppa.html muuttujan $kaupat datalla
+    View::make('suunnitelmat/kaupat/kauppa.html', array('kauppa' => $kauppa));
   }
   public static function store(){
     // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
@@ -15,8 +24,6 @@ class KauppaController extends BaseController{
       'osoite' => $params['osoite'],
       'kauppayhtyma' => $params['kauppayhtyma']
     ));
-
-    Kint::dump($params);
 
     // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
     $kauppa->save();

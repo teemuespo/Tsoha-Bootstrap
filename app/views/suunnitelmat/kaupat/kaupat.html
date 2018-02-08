@@ -9,14 +9,16 @@
       <tr>
         <th>Nimi</th>
         <th>Osoite</th>
+        <th>Kauppayhtymä</th>
       </tr>
     </thead>
 
     <tbody>
       {% for kauppa in kaupat %}
         <tr>
-          <td>{{kauppa.nimi}}</td>
+          <td><a href="{{base_path}}/kaupat/{{kauppa.id}}" class="transparent button">{{kauppa.nimi}}</a></td>
           <td>{{kauppa.osoite}}</td>
+          <td>{{kauppa.kauppayhtyma_id}}</td>
         </tr>
       {% endfor %}
     </tbody>

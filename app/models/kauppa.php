@@ -22,7 +22,7 @@ class Kauppa extends BaseModel{
 	        'id' => $row['id'],
 	        'nimi' => $row['nimi'],
 	        'osoite' => $row['osoite'],
-	        'kauppayhtyma_id' => $row['kauppayhtyma_id']
+	        'kauppayhtyma' => $row['kauppayhtyma_id']
 	      ));
 	    }
 
@@ -34,7 +34,7 @@ class Kauppa extends BaseModel{
 	    $row = $query->fetch();
 
 	    if($row){
-	      $kauppa = new Kauppa(array(
+	      $kauppa[] = new Kauppa(array(
 	        'id' => $row['id'],
 	        'nimi' => $row['nimi'],
 	        'osoite' => $row['osoite'],
