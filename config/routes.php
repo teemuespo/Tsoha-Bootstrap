@@ -8,32 +8,28 @@
     HelloWorldController::sandbox();
   });
 
-  $routes->get('/kaupat', function() {
-    KauppaController::index();
-  });
-
-  $routes->get('/tuotehaku', function() {
-    TuoteController::tuotehaku();
-  });
-
-  $routes->get('/tuotteet', function() {
-    TuoteController::index();
-  });
-
   $routes->get('/kauppayhtymat', function() {
     KauppayhtymaController::index();
   });
 
-  $routes->post('/kaupat', function() {
-    KauppaController::store();
-  });
-
-  $routes->post('/tuotteet', function() {
-    TuoteController::store();
+  $routes->get('/kauppayhtymat/uusi', function() {
+    KauppayhtymaController::uusi_kauppayhtyma();
   });
 
   $routes->post('/kauppayhtymat', function() {
     KauppayhtymaController::store();
+  });
+
+  $routes->get('/kauppayhtymat/:id', function($id) {
+    KauppayhtymaController::show($id);
+  });
+
+  $routes->get('/kaupat', function() {
+    KauppaController::index();
+  });
+
+  $routes->post('/kaupat', function() {
+    KauppaController::store();
   });
 
   $routes->get('/kaupat/uusi', function() {
@@ -44,12 +40,28 @@
     KauppaController::show($id);
   });
 
-  $routes->get('/kauppayhtymat/:id', function($id) {
-    KauppayhtymaController::show($id);
+  $routes->get('/kaupat/:id/muokkaa', function($id){
+    KauppaController::edit($id);
   });
 
-  $routes->get('/kauppayhtymat/uusi', function($id) {
-    KauppayhtymaController::show($id);
+  $routes->post('/kaupat/:id/muokkaa', function($id){
+    KauppaController::update($id);
+  });
+
+  $routes->post('/kaupat/:id/poista', function($id){
+    KauppaController::destroy($id);
+  });
+
+  $routes->get('/tuotehaku', function() {
+    TuoteController::tuotehaku();
+  });
+
+  $routes->get('/tuotteet', function() {
+    TuoteController::index();
+  });
+
+  $routes->post('/tuotteet', function() {
+    TuoteController::store();
   });
 
   $routes->get('/tuotteet/:id', function($id) {
@@ -58,10 +70,6 @@
 
   $routes->get('/tuotteet/uusi', function() {
     TuoteController::uusi_tuote();
-  });
-
-  $routes->get('/kauppayhtymat/uusi', function() {
-    KauppayhtymaController::uusi_kauppayhtyma();
   });
 
   $routes->get('/uusi_ostotapahtuma', function() {

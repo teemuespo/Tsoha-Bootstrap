@@ -13,6 +13,17 @@
           $this->{$attribute} = $value;
         }
       }
+      //$this->validators = array('validate_string_length');
+    }
+/*
+    public function validate_string_length($string) {
+      if($string == null) {
+        return 'Kenttä ei saa olla tyhjä!';
+      }
+      else if(strlen($string) < 2) {
+        return 'Kentän pituuden tulee olla vähintään  2 merkkiä!';
+      }
+      return null;
     }
 
     public function errors(){
@@ -21,9 +32,10 @@
 
       foreach($this->validators as $validator){
         // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
+        array_push($errors, $validator());
       }
 
       return $errors;
     }
-
+*/
   }

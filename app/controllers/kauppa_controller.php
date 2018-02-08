@@ -9,6 +9,33 @@ class KauppaController extends BaseController{
     // Renderöidään views/suunnitelmat kansiossa sijaitseva tiedosto kauppa.html muuttujan $kaupat datalla
     View::make('suunnitelmat/kaupat/kaupat.html', array('kaupat' => $kaupat));
   }
+  public static function edit($id) {
+    $kauppa = Kauppa::find($id);
+    View::make('suunnitelmat/kaupat/edit.html', array('attributes' => $kauppa));
+  }
+  public static function update($id) {
+    $params = $_POST;
+
+    $attributes = array(
+      'id' => $id,
+      'nimi' => $params['nimi'],
+      'osoite' => $params['osoite'],
+      'kauppayhtyma_id' => $params['kauppayhtyma_id']
+    );
+
+    $kauppa = new Kauppa($attributes);
+
+    $kauppa->update();
+
+    Redirect::to('/suunnitelmat/kaupat/' , $kauppa->id, array('message' => 'Kauppaa on muokattu onnistuneesti!'));
+  }
+  public static function destroy($id){
+    $kauppa = new Kauppa(array('id' => $id));
+    $kauppa->destroy();
+
+    Redirect::to('/suunnitelmat/kaupat/' , $kauppa->id, array('message' => 'Kauppa on poistettu onnistuneesti!'));
+  }
+
   public static function show($id){
     // Haetaan kaikki kaupat tietokannasta
     $kauppa = Kauppa::find($id);

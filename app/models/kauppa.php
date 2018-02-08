@@ -56,4 +56,26 @@ class Kauppa extends BaseModel{
 	    // Asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
 	    $this->id = $row['id'];
 	  }  
+	public function update($id){
+		$query = DB::connection()->prepare('UPDATE Kauppa SET nimi = :nimi, osoite = :osoite, kauppayhtyma_id = kauppayhtyma_id WHERE id = :id LIMIT 1');
+		$query->execute(array('id' => $id));
+		$row = $query->fetch();
+
+		if($row){
+	      $kauppa[] = new Kauppa(array(
+	        'id' => $row['id'],
+	        'nimi' => $row['nimi'],
+	        'osoite' => $row['osoite'],
+	        'kauppayhtyma_id' => $row['kauppayhtyma_id']
+	      ));
+
+	      return $kauppa;
+	    }
+
+	    return null;
+	} 
+	public function destroy($id) {
+		$query = DB::connection()->prepare('DELETE FROM Kauppa WHERE id = :id LIMIT 1');
+		$query->execute(array('id' => $id));
+	} 
 }

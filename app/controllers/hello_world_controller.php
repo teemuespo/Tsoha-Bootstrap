@@ -10,6 +10,14 @@
     public static function sandbox(){
       // Testaa koodiasi täällä
       // Kint-luokan dump-metodi tulostaa muuttujan arvon
+      /*$kintkauppa = new Kauppa(array(
+        'nimi' => 'k',
+        'osoite' => '',
+        'kauppayhtyma_id' => null
+      ));
+      $errors = $kintkauppa->errors();
+
+      Kint::dump($errors);*/
       View::make('helloworld.html');
     }
 

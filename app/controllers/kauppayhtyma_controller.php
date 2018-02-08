@@ -24,11 +24,17 @@ class KauppayhtymaController extends BaseController{
       'nimi' => $params['nimi'],
       'bonus' => $params['bonus']
     ));
+/*
+    $errors = $kauppayhtyma->errors();
 
-    // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
-    $kauppayhtyma->save();
+    if(count($errors) == 0) {   */
+      // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
+      $kauppayhtyma->save();
 
-    // Ohjataan käyttäjä lisäyksen jälkeen kauppayhtymän esittelysivulle
-    Redirect::to('/kauppayhtymat/' . $kauppayhtyma->id, array('message' => 'Kauppayhtymä on lisätty tietokantaan!'));
-  }
+      // Ohjataan käyttäjä lisäyksen jälkeen kauppayhtymän esittelysivulle
+      Redirect::to('/kauppayhtymat' , array('message' => 'Kauppayhtymä on lisätty tietokantaan!'));
+/*    } else {
+      View::make('suunnitelmat/kauppayhtymat/uusi_kauppayhtyma.html', array('errors' => $errors, 'attributes' => $attributes));
+    } */
+  } 
 }
