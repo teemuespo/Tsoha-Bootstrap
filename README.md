@@ -14,6 +14,10 @@ Linkkejä sovelluksen eri osiin:
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/tuotteet
 * https://tespo.users.cs.helsinki.fi/tikaharjoitus/tietokantayhteys
 
+Kirjautuminen:
+* http://tespo.users.cs.helsinki.fi/tikaharjoitus/kirjaudu
+Käyttäjätunnus: teemu, salasana: espo
+Ei valitettavasti toimi vielä.
 
 ## Työn aihe
 
