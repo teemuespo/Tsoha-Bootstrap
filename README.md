@@ -17,7 +17,7 @@ Linkkejä sovelluksen eri osiin:
 Kirjautuminen:
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/kirjaudu
 Käyttäjätunnus: teemu, salasana: espo
-Ei valitettavasti toimi vielä.
+Poisto ja muokkaustoiminnot tulevat olemaan vain admineille. Tämä ei kuitenkaan valitettavasti toimi vielä.
 
 ## Työn aihe
 
