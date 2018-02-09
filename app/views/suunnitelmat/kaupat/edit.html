@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>Muokkaa tietokannassa olevaa kauppaa:</h1>
-
-  <form method="post" action="{{base_path}}/kaupat">
+  <form method="post" action="{{base_path}}/kaupat/{{kauppa.id}}/muokkaa">
     <div class="form-group">
       <label>Nimi</label>
       <input name="nimi" class="form-control" type="text">

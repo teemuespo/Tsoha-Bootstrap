@@ -1,4 +1,10 @@
 -- Lisää CREATE TABLE lauseet tähän tiedostoon
+CREATE TABLE Admin(
+  id SERIAL PRIMARY KEY,
+  username varchar(50) NOT NULL,
+  password varchar(50) NOT NULL
+);
+
 CREATE TABLE Kauppayhtyma(
 	id SERIAL PRIMARY KEY,
 	nimi varchar(75) NOT NULL,

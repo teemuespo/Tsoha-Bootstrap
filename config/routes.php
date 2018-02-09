@@ -79,3 +79,13 @@
   $routes->post('/uusi_ostotapahtuma', function() {
     OstotapahtumaController::store();
   });
+
+  $routes->get('/kirjaudu', function(){
+    // Kirjautumislomakkeen esittäminen
+    KirjautumisController::login();
+  });
+
+  $routes->post('/kirjaudu', function(){
+    // Kirjautumisen käsittely
+    KirjautumisController::handle_login();
+  });

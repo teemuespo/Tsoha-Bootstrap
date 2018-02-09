@@ -7,3 +7,4 @@ INSERT INTO Kauppa (nimi, osoite) VALUES ('toinenkauppanen', 'testikatu 18');
 INSERT INTO Tuote (nimi) VALUES ('kurkku');
 
 INSERT INTO Ostotapahtuma (kauppa_id, tuote_id, hinta) VALUES ('1', '1', '15.89');
+INSERT INTO Admin (username, password) VALUES ('teemu', 'espo');

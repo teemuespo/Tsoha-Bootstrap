@@ -11,6 +11,7 @@ class KauppaController extends BaseController{
   }
   public static function edit($id) {
     $kauppa = Kauppa::find($id);
+    Kint::dump($kauppa);
     View::make('suunnitelmat/kaupat/edit.html', array('attributes' => $kauppa));
   }
   public static function update($id) {
@@ -20,12 +21,12 @@ class KauppaController extends BaseController{
       'id' => $id,
       'nimi' => $params['nimi'],
       'osoite' => $params['osoite'],
-      'kauppayhtyma_id' => $params['kauppayhtyma_id']
+      'kauppayhtyma_id' => $params['kauppayhtyma']
     );
 
     $kauppa = new Kauppa($attributes);
 
-    $kauppa->update();
+    $kauppa->update($id);
 
     Redirect::to('/suunnitelmat/kaupat/' , $kauppa->id, array('message' => 'Kauppaa on muokattu onnistuneesti!'));
   }

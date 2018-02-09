@@ -1,5 +1,7 @@
 {% extends "base.html" %}
+{% import "macros/forms.html" as forms %}
 {% block content %}
+
 <h1>Kaupat</h1>
 <p>
   <a href="{{base_path}}/kaupat/uusi" class="btn btn-success">Lisää uusi kauppa tietokantaan.</a>
@@ -19,8 +21,8 @@
           <td><a href="{{base_path}}/kaupat/{{kauppa.id}}" class="transparent button">{{kauppa.nimi}}</a></td>
           <td>{{kauppa.osoite}}</td>
           <td>{{kauppa.kauppayhtyma_id}}</td>
-          <td><form method="post" action="{{base_path}}/kaupat/{{kauppa.id}}/muokkaa" style="display: inline-block;"><button type="submit" class="btn btn-success">Muokkaa</button></form></td>
-          <td><form method="post" action="{{base_path}}/kaupat/{{kauppa.id}}/poista" style="display: inline-block;"><button type="submit" class="btn btn-danger">Poista</button></form></td>
+          <td><form method="get" action="{{base_path}}/kaupat/{{kauppa.id}}/muokkaa" style="display: inline-block;"><button type="submit" class="btn btn-success">Muokkaa</button></form></td>
+          <td>{{forms.destroy_button("#{base_path}/kaupat/#{kauppa.id}/poista")}}</td>
         </tr>
       {% endfor %}
     </tbody>

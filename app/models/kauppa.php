@@ -57,8 +57,8 @@ class Kauppa extends BaseModel{
 	    $this->id = $row['id'];
 	  }  
 	public function update($id){
-		$query = DB::connection()->prepare('UPDATE Kauppa SET nimi = :nimi, osoite = :osoite, kauppayhtyma_id = kauppayhtyma_id WHERE id = :id LIMIT 1');
-		$query->execute(array('id' => $id));
+		$query = DB::connection()->prepare('UPDATE Kauppa SET nimi = :nimi, osoite = :osoite, kauppayhtyma_id = :kauppayhtyma_id WHERE id = :id LIMIT 1');
+		$query->execute(array('nimi' => $this->nimi, 'osoite' => $this->osoite, 'kauppayhtyma_id' => $this->kauppayhtyma_id, 'id' => $this->id));
 		$row = $query->fetch();
 
 		if($row){
@@ -74,8 +74,8 @@ class Kauppa extends BaseModel{
 
 	    return null;
 	} 
-	public function destroy($id) {
-		$query = DB::connection()->prepare('DELETE FROM Kauppa WHERE id = :id LIMIT 1');
+	public function destroy() {
+		$query = DB::connection()->prepare('DELETE FROM Kauppa WHERE id = :id RETURNING id');
 		$query->execute(array('id' => $id));
 	} 
 }
