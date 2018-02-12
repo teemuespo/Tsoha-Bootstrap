@@ -32,7 +32,7 @@ class Tuote extends BaseModel{
 	    $row = $query->fetch();
 
 	    if($row){
-	      $tuote[] = new Tuote(array(
+	      $tuote = new Tuote(array(
 	        'id' => $row['id'],
 	        'nimi' => $row['nimi']
 	      ));

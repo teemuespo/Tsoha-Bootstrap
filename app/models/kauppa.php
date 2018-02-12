@@ -22,7 +22,7 @@ class Kauppa extends BaseModel{
 	        'id' => $row['id'],
 	        'nimi' => $row['nimi'],
 	        'osoite' => $row['osoite'],
-	        'kauppayhtyma' => $row['kauppayhtyma_id']
+	        'kauppayhtyma_id' => $row['kauppayhtyma_id']
 	      ));
 	    }
 
@@ -34,7 +34,7 @@ class Kauppa extends BaseModel{
 	    $row = $query->fetch();
 
 	    if($row){
-	      $kauppa[] = new Kauppa(array(
+	      $kauppa = new Kauppa(array(
 	        'id' => $row['id'],
 	        'nimi' => $row['nimi'],
 	        'osoite' => $row['osoite'],
@@ -50,7 +50,7 @@ class Kauppa extends BaseModel{
 	    // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
 	    $query = DB::connection()->prepare('INSERT INTO Kauppa (nimi, osoite, kauppayhtyma_id) VALUES (:nimi, :osoite, :kauppayhtyma) RETURNING id');
 	    // Muistathan, että olion attribuuttiin pääse syntaksilla $this->attribuutin_nimi
-	    $query->execute(array('nimi' => $this->nimi, 'osoite' => $this->osoite, 'kauppayhtyma' => $this->kauppayhtyma_id));
+	    $query->execute(array('nimi' => $this->nimi, 'osoite' => $this->osoite, 'kauppayhtyma_id' => $this->kauppayhtyma_id));
 	    // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
 	    $row = $query->fetch();
 	    // Asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
@@ -62,7 +62,7 @@ class Kauppa extends BaseModel{
 		$row = $query->fetch();
 
 		if($row){
-	      $kauppa[] = new Kauppa(array(
+	      $kauppa = new Kauppa(array(
 	        'id' => $row['id'],
 	        'nimi' => $row['nimi'],
 	        'osoite' => $row['osoite'],
@@ -74,7 +74,7 @@ class Kauppa extends BaseModel{
 
 	    return null;
 	} 
-	public function destroy() {
+	public function destroy($id) {
 		$query = DB::connection()->prepare('DELETE FROM Kauppa WHERE id = :id RETURNING id');
 		$query->execute(array('id' => $id));
 	} 

@@ -10,7 +10,7 @@ class Admin extends BaseModel{
 	    $row = $query->fetch();
 
 	    if($row){
-	      $admin[] = new Admin(array(
+	      $admin = new Admin(array(
 	        'id' => $row['id'],
 	        'username' => $row['username'],
 	        'password' => $row['password']

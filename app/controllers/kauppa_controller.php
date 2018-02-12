@@ -11,7 +11,6 @@ class KauppaController extends BaseController{
   }
   public static function edit($id) {
     $kauppa = Kauppa::find($id);
-    Kint::dump($kauppa);
     View::make('suunnitelmat/kaupat/edit.html', array('attributes' => $kauppa));
   }
   public static function update($id) {
@@ -28,13 +27,13 @@ class KauppaController extends BaseController{
 
     $kauppa->update($id);
 
-    Redirect::to('/suunnitelmat/kaupat/' , $kauppa->id, array('message' => 'Kauppaa on muokattu onnistuneesti!'));
+    Redirect::to('/kaupat/' , $kauppa->id, array('message' => 'Kauppaa on muokattu onnistuneesti!'));
   }
   public static function destroy($id){
     $kauppa = new Kauppa(array('id' => $id));
-    $kauppa->destroy();
+    $kauppa->destroy($id);
 
-    Redirect::to('/suunnitelmat/kaupat/' , $kauppa->id, array('message' => 'Kauppa on poistettu onnistuneesti!'));
+    Redirect::to('/kaupat/' , $kauppa->id, array('message' => 'Kauppa on poistettu onnistuneesti!'));
   }
 
   public static function show($id){

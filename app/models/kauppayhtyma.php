@@ -33,7 +33,7 @@ class Kauppayhtyma extends BaseModel{
 	    $row = $query->fetch();
 
 	    if($row){
-	      $kauppayhtyma[] = new Kauppayhtyma(array(
+	      $kauppayhtyma = new Kauppayhtyma(array(
 	        'id' => $row['id'],
 	        'nimi' => $row['nimi'],
 	        'bonus' => $row['bonus']
