@@ -33,14 +33,15 @@ class KauppaController extends BaseController{
     $kauppa = new Kauppa(array('id' => $id));
     $kauppa->destroy($id);
 
-    Redirect::to('/kaupat/' , $kauppa->id, array('message' => 'Kauppa on poistettu onnistuneesti!'));
+    Redirect::to('/kaupat' , array('message' => 'Kauppa on poistettu onnistuneesti!'));
   }
 
   public static function show($id){
     // Haetaan kaikki kaupat tietokannasta
     $kauppa = Kauppa::find($id);
+    $ostot = Ostotapahtuma::kaupalla($id);
     // Renderöidään views/suunnitelmat kansiossa sijaitseva tiedosto kauppa.html muuttujan $kaupat datalla
-    View::make('suunnitelmat/kaupat/kauppa.html', array('kauppa' => $kauppa));
+    View::make('suunnitelmat/kaupat/kauppa.html', array('kauppa' => $kauppa, 'ostot' => $ostot));
   }
   public static function store(){
     // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
@@ -49,14 +50,14 @@ class KauppaController extends BaseController{
     $kauppa = new Kauppa(array(
       'nimi' => $params['nimi'],
       'osoite' => $params['osoite'],
-      'kauppayhtyma' => $params['kauppayhtyma']
+      'kauppayhtyma_id' => $params['kauppayhtyma_id']
     ));
 
     // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
     $kauppa->save();
 
     // Ohjataan käyttäjä lisäyksen jälkeen kaupan esittelysivulle
-    Redirect::to('/kaupat/' . $kauppa->id, array('message' => 'Kauppa on lisätty tietokantaan!'));
+    Redirect::to('/kaupat' , array('message' => 'Kauppa on lisätty tietokantaan!'));
   }
   
 }

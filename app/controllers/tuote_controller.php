@@ -12,6 +12,12 @@ class TuoteController extends BaseController{
     // Renderöidään views/suunnitelmat kansiossa sijaitseva tiedosto tuote.html muuttujan $tuotteet datalla
     View::make('suunnitelmat/tuotteet/tuotteet.html', array('tuotteet' => $tuotteet));
   }
+  public static function destroy($id){
+    $tuote = new Tuote(array('id' => $id));
+    $tuote->destroy($id);
+
+    Redirect::to('/tuotteet' , array('message' => 'Tuote on poistettu onnistuneesti!'));
+  }
   public static function show($id){
     // Haetaan kaikki ostot kyseisestä tuotteesta tietokannasta
     $ostot = Ostotapahtuma::tuotteella($id);

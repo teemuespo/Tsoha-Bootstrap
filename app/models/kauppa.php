@@ -48,7 +48,7 @@ class Kauppa extends BaseModel{
 	  }
 	public function save(){
 	    // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
-	    $query = DB::connection()->prepare('INSERT INTO Kauppa (nimi, osoite, kauppayhtyma_id) VALUES (:nimi, :osoite, :kauppayhtyma) RETURNING id');
+	    $query = DB::connection()->prepare('INSERT INTO Kauppa (nimi, osoite, kauppayhtyma_id) VALUES (:nimi, :osoite, :kauppayhtyma_id) RETURNING id');
 	    // Muistathan, että olion attribuuttiin pääse syntaksilla $this->attribuutin_nimi
 	    $query->execute(array('nimi' => $this->nimi, 'osoite' => $this->osoite, 'kauppayhtyma_id' => $this->kauppayhtyma_id));
 	    // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
@@ -75,6 +75,8 @@ class Kauppa extends BaseModel{
 	    return null;
 	} 
 	public function destroy($id) {
+		$query = DB::connection()->prepare('DELETE FROM Ostotapahtuma WHERE kauppa_id = :id');
+		$query->execute(array('id' => $id));
 		$query = DB::connection()->prepare('DELETE FROM Kauppa WHERE id = :id RETURNING id');
 		$query->execute(array('id' => $id));
 	} 

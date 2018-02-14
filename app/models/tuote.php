@@ -51,5 +51,9 @@ class Tuote extends BaseModel{
 	    $row = $query->fetch();
 	    // Asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
 	    $this->id = $row['id'];
-	  }  
+	  } 
+	public function destroy($id) {
+		$query = DB::connection()->prepare('DELETE FROM Tuote WHERE id = :id RETURNING id');
+		$query->execute(array('id' => $id));
+	}   
 }

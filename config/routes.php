@@ -64,12 +64,16 @@
     TuoteController::store();
   });
 
+  $routes->get('/tuotteet/uusi', function() {
+    TuoteController::uusi_tuote();
+  });
+
   $routes->get('/tuotteet/:id', function($id) {
     TuoteController::show($id);
   });
 
-  $routes->get('/tuotteet/uusi', function() {
-    TuoteController::uusi_tuote();
+  $routes->post('/tuotteet/:id/poista', function($id){
+    KauppaController::destroy($id);
   });
 
   $routes->get('/uusi_ostotapahtuma', function() {
