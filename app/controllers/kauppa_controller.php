@@ -1,17 +1,18 @@
 <?php
 class KauppaController extends BaseController{
   public static function uusi_kauppa(){
-      View::make('/suunnitelmat/kaupat/uusi_kauppa.html');
-    }
+    $kauppayhtymat = Kauppayhtyma::all();
+    View::make('/kaupat/uusi_kauppa.html', array('kauppayhtymat' => $kauppayhtymat));
+  }
   public static function index(){
     // Haetaan kaikki kaupat tietokannasta
     $kaupat = Kauppa::all();
     // Renderöidään views/suunnitelmat kansiossa sijaitseva tiedosto kauppa.html muuttujan $kaupat datalla
-    View::make('suunnitelmat/kaupat/kaupat.html', array('kaupat' => $kaupat));
+    View::make('/kaupat/kaupat.html', array('kaupat' => $kaupat));
   }
   public static function edit($id) {
     $kauppa = Kauppa::find($id);
-    View::make('suunnitelmat/kaupat/edit.html', array('attributes' => $kauppa));
+    View::make('/kaupat/edit.html', array('kauppa' => $kauppa));
   }
   public static function update($id) {
     $params = $_POST;
@@ -41,7 +42,7 @@ class KauppaController extends BaseController{
     $kauppa = Kauppa::find($id);
     $ostot = Ostotapahtuma::kaupalla($id);
     // Renderöidään views/suunnitelmat kansiossa sijaitseva tiedosto kauppa.html muuttujan $kaupat datalla
-    View::make('suunnitelmat/kaupat/kauppa.html', array('kauppa' => $kauppa, 'ostot' => $ostot));
+    View::make('/kaupat/kauppa.html', array('kauppa' => $kauppa, 'ostot' => $ostot));
   }
   public static function store(){
     // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa

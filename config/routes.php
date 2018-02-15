@@ -1,7 +1,11 @@
 <?php
 
+  function check_logged_in() {
+    BaseController::check_logged_in();
+  }
+
   $routes->get('/', function() {
-    HelloWorldController::index();
+    TuoteController::index();
   });
 
   $routes->get('/hiekkalaatikko', function() {
@@ -40,7 +44,7 @@
     KauppaController::show($id);
   });
 
-  $routes->get('/kaupat/:id/muokkaa', function($id){
+  $routes->get('/kaupat/:id/muokkaa', 'check_logged_in', function($id){
     KauppaController::edit($id);
   });
 
@@ -48,7 +52,7 @@
     KauppaController::update($id);
   });
 
-  $routes->post('/kaupat/:id/poista', function($id){
+  $routes->post('/kaupat/:id/poista', 'check_logged_in', function($id){
     KauppaController::destroy($id);
   });
 
@@ -72,8 +76,8 @@
     TuoteController::show($id);
   });
 
-  $routes->post('/tuotteet/:id/poista', function($id){
-    KauppaController::destroy($id);
+  $routes->post('/tuotteet/:id/poista', 'check_logged_in', function($id){
+    TuoteController::destroy($id);
   });
 
   $routes->get('/uusi_ostotapahtuma', function() {
@@ -92,4 +96,8 @@
   $routes->post('/kirjaudu', function(){
     // Kirjautumisen käsittely
     KirjautumisController::handle_login();
+  });
+
+  $routes->post('/kirjaudu_ulos', function(){
+    KirjautumisController::logout();
   });

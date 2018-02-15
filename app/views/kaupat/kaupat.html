@@ -9,7 +9,6 @@
 <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th>Id</th>
         <th>Nimi</th>
         <th>Osoite</th>
         <th>Kauppayhtymä</th>
@@ -19,10 +18,9 @@
     <tbody>
       {% for kauppa in kaupat %}
         <tr>
-          <td>{{kauppa.id}}</td>
           <td><a href="{{base_path}}/kaupat/{{kauppa.id}}" class="transparent button">{{kauppa.nimi}}</a></td>
           <td>{{kauppa.osoite}}</td>
-          <td>{{kauppa.kauppayhtyma_id}}</td>
+          <td><a href="{{base_path}}/kauppayhtymat/{{kauppa.kauppayhtyma_id}}" class="transparent button">{{kauppa.kauppayhtyma}}</a></td>
           <td><form method="get" action="{{base_path}}/kaupat/{{kauppa.id}}/muokkaa" style="display: inline-block;"><button type="submit" class="btn btn-success">Muokkaa</button></form></td>
           <td>{{forms.destroy_button("#{base_path}/kaupat/#{kauppa.id}/poista")}}</td>
         </tr>

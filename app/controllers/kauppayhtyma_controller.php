@@ -2,19 +2,20 @@
 class KauppayhtymaController extends BaseController{
   public static function uusi_kauppayhtyma(){
       // Testaa koodiasi täällä
-      View::make('/suunnitelmat/kauppayhtymat/uusi_kauppayhtyma.html');
+      View::make('/kauppayhtymat/uusi_kauppayhtyma.html');
     }
   public static function index(){
     // Haetaan kaikki yhtymat tietokannasta
     $kauppayhtymat = Kauppayhtyma::all();
     // Renderöidään views/suunnitelmat kansiossa sijaitseva tiedosto kauppayhtyma.html muuttujan $kauppayhtymat datalla
-    View::make('suunnitelmat/kauppayhtymat/kauppayhtymat.html', array('kauppayhtymat' => $kauppayhtymat));
+    View::make('/kauppayhtymat/kauppayhtymat.html', array('kauppayhtymat' => $kauppayhtymat));
   }
   public static function show($id){
     // Haetaan kaikki kaupat tietokannasta
     $kauppayhtyma = Kauppayhtyma::find($id);
+    $kaupat = Kauppayhtyma::kaupat($id);
     // Renderöidään views/suunnitelmat kansiossa sijaitseva tiedosto kauppa.html muuttujan $kaupat datalla
-    View::make('suunnitelmat/kauppayhtymat/kauppayhtyma.html', array('kauppayhtyma' => $kauppayhtyma));
+    View::make('/kauppayhtymat/kauppayhtyma.html', array('kauppayhtyma' => $kauppayhtyma, 'kaupat' => $kaupat));
   }
   public static function store(){
     // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa

@@ -8,7 +8,7 @@ class Kauppa extends BaseModel{
     }
     public static function all(){
     	 // Alustetaan kysely tietokantayhteydellämme
-	    $query = DB::connection()->prepare('SELECT * FROM Kauppa');
+	    $query = DB::connection()->prepare('SELECT Kauppa.id, Kauppa.nimi, Kauppa.kauppayhtyma_id, Kauppa.osoite, Kauppayhtyma.nimi as kauppayhtyma FROM Kauppa LEFT JOIN Kauppayhtyma ON Kauppa.kauppayhtyma_id = Kauppayhtyma.id');
 	    // Suoritetaan kysely
 	    $query->execute();
 	    // Haetaan kyselyn tuottamat rivit
@@ -18,12 +18,14 @@ class Kauppa extends BaseModel{
 	    // Käydään kyselyn tuottamat rivit läpi
 	    foreach($rows as $row){
 	      // Tämä on PHP:n hassu syntaksi alkion lisäämiseksi taulukkoon :)
-	      $kaupat[] = new Kauppa(array(
+
+	      $kaupat[] = array(
 	        'id' => $row['id'],
 	        'nimi' => $row['nimi'],
 	        'osoite' => $row['osoite'],
+	        'kauppayhtyma' => $row['kauppayhtyma'],
 	        'kauppayhtyma_id' => $row['kauppayhtyma_id']
-	      ));
+	      );
 	    }
 
 	    return $kaupat;

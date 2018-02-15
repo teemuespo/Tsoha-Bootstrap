@@ -15,7 +15,11 @@
 
     <div class="form-group">
       <label>Kauppayhtymä</label>
-      <input name="kauppayhtyma_id" class="form-control" type="text">
+      <select class="form-control" name="kauppayhtyma_id">
+        {% for kauppayhtyma in kauppayhtymat %}
+          <option value="{{kauppayhtyma.id}}">{{kauppayhtyma.nimi}}</option>
+        {% endfor %}
+      </select>
     </div>
 
     <div class="form-group">

@@ -43,7 +43,32 @@ class Kauppayhtyma extends BaseModel{
 	    }
 
 	    return null;
-	}    
+	}
+	public static function kaupat($id){
+    	 // Alustetaan kysely tietokantayhteydellämme
+	    $query = DB::connection()->prepare('SELECT * FROM Kauppa WHERE kauppayhtyma_id = :id');
+	    // Suoritetaan kysely
+	    $query->execute(array('id' => $id));
+	    // Haetaan kyselyn tuottamat rivit
+	    $rows = $query->fetchAll();
+	    $kaupat = array();
+
+	    // Käydään kyselyn tuottamat rivit läpi
+	    if($rows){
+		    foreach($rows as $row){
+		      // Tämä on PHP:n hassu syntaksi alkion lisäämiseksi taulukkoon :)
+		      $kaupat[] = new Kauppa(array(
+		        'id' => $row['id'],
+		        'nimi' => $row['nimi'],
+		        'osoite' => $row['osoite'],
+		        'kauppayhtyma_id' => $row['kauppayhtyma_id']
+		      ));
+		    }
+
+		    return $kaupat;
+		}
+		return null;    
+    }    
 	 
 	public function save(){
 	    // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon

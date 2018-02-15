@@ -8,7 +8,6 @@
 <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th>Id</th>
         <th>Nimi</th>
         <th>Bonus</th>
       </tr>
@@ -17,8 +16,7 @@
     <tbody>
       {% for kauppayhtyma in kauppayhtymat %}
         <tr>
-          <td>{{kauppayhtyma.id}}</td>
-          <td>{{kauppayhtyma.nimi}}</td>
+          <td><a href="{{base_path}}/kauppayhtymat/{{kauppayhtyma.id}}" class="transparent button">{{kauppayhtyma.nimi}}</a></td>
           <td>{{kauppayhtyma.bonus}}</td>
         </tr>
       {% endfor %}

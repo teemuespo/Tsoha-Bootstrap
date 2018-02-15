@@ -8,7 +8,7 @@ class Ostotapahtuma extends BaseModel{
     }
     public static function tuotteella($id){
     	 // Alustetaan kysely tietokantayhteydellämme
-	    $query = DB::connection()->prepare('SELECT * FROM Ostotapahtuma WHERE tuote_id = :id');
+	    $query = DB::connection()->prepare('SELECT Tuote.nimi as tuote, Tuote.id, Ostotapahtuma.tuote_id, Ostotapahtuma.kauppa_id, Kauppa.nimi as kauppa, hinta, ostohetki FROM Ostotapahtuma LEFT JOIN Tuote ON Ostotapahtuma.tuote_id = Tuote.id LEFT JOIN Kauppa ON Ostotapahtuma.kauppa_id = Kauppa.id WHERE tuote_id = :id');
 	    // Suoritetaan kysely
 	    $query->execute(array('id' => $id));
 	    // Haetaan kyselyn tuottamat rivit
@@ -16,21 +16,26 @@ class Ostotapahtuma extends BaseModel{
 	    $kaupat = array();
 
 	    // Käydään kyselyn tuottamat rivit läpi
-	    foreach($rows as $row){
-	      // Tämä on PHP:n hassu syntaksi alkion lisäämiseksi taulukkoon :)
-	      $ostot[] = new Ostotapahtuma(array(
-	        'tuote_id' => $row['tuote_id'],
-	        'kauppa_id' => $row['kauppa_id'],
-	        'hinta' => $row['hinta'],
-	        'ostohetki' => $row['ostohetki']
-	      ));
-	    }
+	    if($rows){
+		    foreach($rows as $row){
+		      // Tämä on PHP:n hassu syntaksi alkion lisäämiseksi taulukkoon :)
+		      $ostot[] = array(
+		        'tuote' => $row['tuote'],
+		        'tuote_id' => $row['tuote_id'],
+		        'kauppa' => $row['kauppa'],
+		        'kauppa_id' => $row['kauppa_id'],
+		        'hinta' => $row['hinta'],
+		        'ostohetki' => $row['ostohetki']
+		      );
+		    }
 
-	    return $ostot;
+		    return $ostot;
+		}
+		return null;
     }
     public static function kaupalla($id){
     	 // Alustetaan kysely tietokantayhteydellämme
-	    $query = DB::connection()->prepare('SELECT * FROM Ostotapahtuma WHERE kauppa_id = :id');
+	    $query = DB::connection()->prepare('SELECT Tuote.nimi as tuote, Tuote.id, Ostotapahtuma.tuote_id, Ostotapahtuma.kauppa_id, Kauppa.nimi as kauppa, hinta, ostohetki FROM Ostotapahtuma LEFT JOIN Tuote ON Ostotapahtuma.tuote_id = Tuote.id LEFT JOIN Kauppa ON Ostotapahtuma.kauppa_id = Kauppa.id WHERE kauppa_id = :id');
 	    // Suoritetaan kysely
 	    $query->execute(array('id' => $id));
 	    // Haetaan kyselyn tuottamat rivit
@@ -38,17 +43,22 @@ class Ostotapahtuma extends BaseModel{
 	    $kaupat = array();
 
 	    // Käydään kyselyn tuottamat rivit läpi
-	    foreach($rows as $row){
-	      // Tämä on PHP:n hassu syntaksi alkion lisäämiseksi taulukkoon :)
-	      $ostot[] = new Ostotapahtuma(array(
-	        'tuote_id' => $row['tuote_id'],
-	        'kauppa_id' => $row['kauppa_id'],
-	        'hinta' => $row['hinta'],
-	        'ostohetki' => $row['ostohetki']
-	      ));
-	    }
+	    if($rows){
+		    foreach($rows as $row){
+		      // Tämä on PHP:n hassu syntaksi alkion lisäämiseksi taulukkoon :)
+		      $ostot[] = array(
+		        'tuote' => $row['tuote'],
+		        'tuote_id' => $row['tuote_id'],
+		        'kauppa' => $row['kauppa'],
+		        'kauppa_id' => $row['kauppa_id'],
+		        'hinta' => $row['hinta'],
+		        'ostohetki' => $row['ostohetki']
+		      );
+		    }
 
-	    return $ostot;
+		    return $ostot;
+		}
+		return null;
     }
     public function save(){
 	    // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
