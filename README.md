@@ -1,7 +1,7 @@
 # Tietokantasovelluksen esittelysivu
 
 
-* [Linkki sovellukseeni](http://tespo.users.cs.helsinki.fi/tikaharjoitus/tuotteet)
+* [Linkki sovellukseeni](http://tespo.users.cs.helsinki.fi/tikaharjoitus)
 
 * [Linkki dokumentaatiooni](https://github.com/teemuespo/Tsoha-Bootstrap/tree/master/doc)
 
@@ -13,6 +13,7 @@ Linkkejä sovelluksen eri osiin:
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/tuotehaku
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/tuotteet
 * https://tespo.users.cs.helsinki.fi/tikaharjoitus/tietokantayhteys
+* http://tespo.users.cs.helsinki.fi/tikaharjoitus/kirjaudu
 
 Kirjautuminen:
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/kirjaudu
