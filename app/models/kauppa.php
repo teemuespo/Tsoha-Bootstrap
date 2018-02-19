@@ -31,17 +31,18 @@ class Kauppa extends BaseModel{
 	    return $kaupat;
     }
     public static function find($id){
-	    $query = DB::connection()->prepare('SELECT * FROM Kauppa WHERE id = :id LIMIT 1');
+	    $query = DB::connection()->prepare('SELECT Kauppa.Id, Kauppa.nimi, Kauppa.osoite, Kauppa.kauppayhtyma_id, Kauppayhtyma.nimi as kauppayhtyma FROM Kauppa LEFT JOIN Kauppayhtyma ON Kauppa.kauppayhtyma_id = Kauppayhtyma.id WHERE Kauppa.id = :id LIMIT 1');
 	    $query->execute(array('id' => $id));
 	    $row = $query->fetch();
 
 	    if($row){
-	      $kauppa = new Kauppa(array(
+	      $kauppa = array(
 	        'id' => $row['id'],
 	        'nimi' => $row['nimi'],
 	        'osoite' => $row['osoite'],
-	        'kauppayhtyma_id' => $row['kauppayhtyma_id']
-	      ));
+	        'kauppayhtyma_id' => $row['kauppayhtyma_id'],
+	        'kauppayhtyma' => $row['kauppayhtyma']
+	      );
 
 	      return $kauppa;
 	    }

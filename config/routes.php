@@ -28,6 +28,10 @@
     KauppayhtymaController::show($id);
   });
 
+  $routes->post('/kauppayhtymat/:id/poista', function($id){
+    KauppayhtymaController::destroy($id);
+  });
+
   $routes->get('/kaupat', function() {
     KauppaController::index();
   });
@@ -44,7 +48,7 @@
     KauppaController::show($id);
   });
 
-  $routes->get('/kaupat/:id/muokkaa', 'check_logged_in', function($id){
+  $routes->get('/kaupat/:id/muokkaa', function($id){
     KauppaController::edit($id);
   });
 
@@ -52,7 +56,7 @@
     KauppaController::update($id);
   });
 
-  $routes->post('/kaupat/:id/poista', 'check_logged_in', function($id){
+  $routes->post('/kaupat/:id/poista', function($id){
     KauppaController::destroy($id);
   });
 
@@ -76,7 +80,7 @@
     TuoteController::show($id);
   });
 
-  $routes->post('/tuotteet/:id/poista', 'check_logged_in', function($id){
+  $routes->post('/tuotteet/:id/poista', function($id){
     TuoteController::destroy($id);
   });
 

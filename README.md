@@ -19,7 +19,8 @@ Kirjautuminen:
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/kirjaudu
 Käyttäjätunnus: teemu, salasana: espo
 Poisto ja muokkaustoiminnot tulevat olemaan vain admineille. Tämä ei kuitenkaan valitettavasti toimi vielä.
+HUOM! Älä poista "Ei kuulu kauppayhtymään"-kauppayhtymää!!
 
 ## Työn aihe
 
-Työn aiheena on hintavertailu. Sovelluksella voi vertailla tuotteen hintoja kaupan ja/tai päivämäärän mukaan.
+Työn aiheena on hintavertailu. Sovelluksella voi vertailla tuotteen hintoja kaupan ja/tai päivämäärän mukaan sekä katsoa kaupasta löytyviä tuotteita ja niiden hintoja.

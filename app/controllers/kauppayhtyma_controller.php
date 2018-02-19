@@ -38,4 +38,10 @@ class KauppayhtymaController extends BaseController{
       View::make('suunnitelmat/kauppayhtymat/uusi_kauppayhtyma.html', array('errors' => $errors, 'attributes' => $attributes));
     } */
   } 
+  public static function destroy($id){
+    $kauppayhtyma = new Kauppayhtyma(array('id' => $id));
+    $kauppayhtyma->destroy($id);
+
+    Redirect::to('/kauppayhtymat' , array('message' => 'Kauppayhtyma on poistettu onnistuneesti!'));
+  }
 }

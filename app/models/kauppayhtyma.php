@@ -80,4 +80,11 @@ class Kauppayhtyma extends BaseModel{
 	    // Asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
 	    $this->id = $row['id'];
 	}
+	public function destroy($id) {
+		$query = DB::connection()->prepare('UPDATE Kauppa SET kauppayhtyma_id = :kauppayhtyma_id WHERE kauppayhtyma_id = :id');
+		$query->execute(array('id' => $id, 'kauppayhtyma_id' => 6));
+		$query = DB::connection()->prepare('DELETE FROM Kauppayhtyma WHERE id = :id RETURNING id');
+		$query->execute(array('id' => $id));
+	}
+
 }

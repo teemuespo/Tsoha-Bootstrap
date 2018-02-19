@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros/forms.html" as forms %}
 {% block content %}
 <h1>Tuotteet</h1>
 
@@ -20,7 +21,9 @@
       {% for tuote in tuotteet %}
         <tr>
           <td><a href="{{base_path}}/tuotteet/{{tuote.id}}" class="transparent button">{{tuote.nimi}}</a></td>
+          {% if user_logged_in %}
           <td>{{forms.destroy_button("#{base_path}/tuotteet/#{tuote.id}/poista")}}</td>
+          {% endif %}
         </tr>
       {% endfor %}
     </tbody>
