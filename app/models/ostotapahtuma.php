@@ -40,7 +40,7 @@ class Ostotapahtuma extends BaseModel{
 	    $query->execute(array('id' => $id));
 	    // Haetaan kyselyn tuottamat rivit
 	    $rows = $query->fetchAll();
-	    $kaupat = array();
+	    $ostot = array();
 
 	    // Käydään kyselyn tuottamat rivit läpi
 	    if($rows){

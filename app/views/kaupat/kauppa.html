@@ -11,7 +11,6 @@
     <thead>
       <tr>
         <th>Tuote</th>
-        <th>Kauppa</th>
         <th>Hinta</th>
         <th>Ostohetki</th>
       </tr>
@@ -20,8 +19,7 @@
     <tbody>
       {% for osto in ostot %}
         <tr>
-          <td><a href="{{base_path}}/tuotteet/{{osto.tuote_id}}" class="transparent button">{{osto.tuote_id}}</a></td>
-          <td><a href="{{base_path}}/kaupat/{{osto.kauppa_id}}" class="transparent button">{{osto.kauppa_id}}</a></td>
+          <td><a href="{{base_path}}/tuotteet/{{osto.tuote_id}}" class="transparent button">{{osto.tuote}}</a></td>
           <td>{{osto.hinta}}</td>
           <td>{{osto.ostohetki}}</td>
         </tr>

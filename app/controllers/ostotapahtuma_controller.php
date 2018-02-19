@@ -20,6 +20,6 @@ class OstotapahtumaController extends BaseController{
     $ostotapahtuma->save();
 
     // Ohjataan käyttäjä lisäyksen jälkeen kaupan esittelysivulle
-    Redirect::to('/tuotehaku' , array('message' => 'Kauppa on lisätty tietokantaan!'));
+    Redirect::to('/uusi_ostotapahtuma' , array('message' => 'Kauppa on lisätty tietokantaan!'));
   }
 }  

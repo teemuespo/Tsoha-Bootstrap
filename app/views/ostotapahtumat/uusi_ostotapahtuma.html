@@ -5,7 +5,7 @@
   <form method="post" action="{{base_path}}/uusi_ostotapahtuma">
     <div class="form-group">
       <label>Tuote</label>
-      <select class="form-control" name="kauppayhtyma_id">
+      <select class="form-control" name="tuote_id">
         {% for tuote in tuotteet %}
           <option value="{{tuote.id}}">{{tuote.nimi}}</option>
         {% endfor %}
@@ -14,7 +14,7 @@
 
     <div class="form-group">
       <label>Kauppa</label>
-      <select class="form-control" name="kauppayhtyma_id">
+      <select class="form-control" name="kauppa_id">
         {% for kauppa in kaupat %}
           <option value="{{kauppa.id}}">{{kauppa.nimi}}</option>
         {% endfor %}
