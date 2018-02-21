@@ -12,7 +12,8 @@ class KauppaController extends BaseController{
   }
   public static function edit($id) {
     $kauppa = Kauppa::find($id);
-    View::make('/kaupat/edit.html', array('kauppa' => $kauppa));
+    $kauppayhtymat = Kauppayhtyma::all();
+    View::make('/kaupat/edit.html', array('kauppa' => $kauppa, 'kauppayhtymat' => $kauppayhtymat));
   }
   public static function update($id) {
     $params = $_POST;
@@ -21,14 +22,14 @@ class KauppaController extends BaseController{
       'id' => $id,
       'nimi' => $params['nimi'],
       'osoite' => $params['osoite'],
-      'kauppayhtyma_id' => $params['kauppayhtyma']
+      'kauppayhtyma_id' => $params['kauppayhtyma_id']
     );
 
     $kauppa = new Kauppa($attributes);
 
     $kauppa->update($id);
 
-    Redirect::to('/kaupat/' , $kauppa->id, array('message' => 'Kauppaa on muokattu onnistuneesti!'));
+    Redirect::to('/kaupat' , array('message' => 'Kauppaa on muokattu onnistuneesti!'));
   }
   public static function destroy($id){
     $kauppa = new Kauppa(array('id' => $id));

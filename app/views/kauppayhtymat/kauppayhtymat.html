@@ -20,6 +20,7 @@
           <td><a href="{{base_path}}/kauppayhtymat/{{kauppayhtyma.id}}" class="transparent button">{{kauppayhtyma.nimi}}</a></td>
           <td>{{kauppayhtyma.bonus}}</td>
           {% if user_logged_in %}
+          <td><form method="get" action="{{base_path}}/kauppayhtymat/{{kauppayhtyma.id}}/muokkaa" style="display: inline-block;"><button type="submit" class="btn btn-success">Muokkaa</button></form></td>
             <td>{{forms.destroy_button("#{base_path}/kauppayhtymat/#{kauppayhtyma.id}/poista")}}</td>
           {% endif %}  
         </tr>

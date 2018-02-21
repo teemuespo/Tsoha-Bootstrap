@@ -44,4 +44,23 @@ class KauppayhtymaController extends BaseController{
 
     Redirect::to('/kauppayhtymat' , array('message' => 'Kauppayhtyma on poistettu onnistuneesti!'));
   }
+  public static function edit($id) {
+    $kauppayhtyma = Kauppayhtyma::find($id);
+    View::make('/kauppayhtymat/edit.html', array('kauppayhtyma' => $kauppayhtyma));
+  }
+  public static function update($id) {
+    $params = $_POST;
+
+    $attributes = array(
+      'id' => $id,
+      'nimi' => $params['nimi'],
+      'bonus' => $params['bonus']
+    );
+
+    $kauppayhtyma = new Kauppayhtyma($attributes);
+
+    $kauppayhtyma->update($id);
+
+    Redirect::to('/kauppayhtymat' , array('message' => 'Kauppayhtymää on muokattu onnistuneesti!'));
+  }
 }

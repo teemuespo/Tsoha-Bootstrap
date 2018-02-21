@@ -86,5 +86,22 @@ class Kauppayhtyma extends BaseModel{
 		$query = DB::connection()->prepare('DELETE FROM Kauppayhtyma WHERE id = :id RETURNING id');
 		$query->execute(array('id' => $id));
 	}
+	public function update($id){
+		$query = DB::connection()->prepare('UPDATE Kauppayhtyma SET nimi = :nimi, bonus = :bonus WHERE id = :id');
+		$query->execute(array('nimi' => $this->nimi, 'bonus' => $this->bonus, 'id' => $id));
+		$row = $query->fetch();
+
+		if($row){
+	      $kauppayhtyma = new Kauppayhtyma(array(
+	        'id' => $row['id'],
+	        'nimi' => $row['nimi'],
+	        'bonus' => $row['bonus']
+	      ));
+
+	      return $kauppayhtyma;
+	    }
+
+	    return null;
+	}
 
 }

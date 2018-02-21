@@ -8,6 +8,7 @@ class Kauppa extends BaseModel{
     }
     public static function all(){
     	 // Alustetaan kysely tietokantayhteydellämme
+    	//$options = array('id' => $options['id']);
 	    $query = DB::connection()->prepare('SELECT Kauppa.id, Kauppa.nimi, Kauppa.kauppayhtyma_id, Kauppa.osoite, Kauppayhtyma.nimi as kauppayhtyma FROM Kauppa LEFT JOIN Kauppayhtyma ON Kauppa.kauppayhtyma_id = Kauppayhtyma.id');
 	    // Suoritetaan kysely
 	    $query->execute();
@@ -60,8 +61,8 @@ class Kauppa extends BaseModel{
 	    $this->id = $row['id'];
 	  }  
 	public function update($id){
-		$query = DB::connection()->prepare('UPDATE Kauppa SET nimi = :nimi, osoite = :osoite, kauppayhtyma_id = :kauppayhtyma_id WHERE id = :id LIMIT 1');
-		$query->execute(array('nimi' => $this->nimi, 'osoite' => $this->osoite, 'kauppayhtyma_id' => $this->kauppayhtyma_id, 'id' => $this->id));
+		$query = DB::connection()->prepare('UPDATE Kauppa SET nimi = :nimi, osoite = :osoite, kauppayhtyma_id = :kauppayhtyma_id WHERE id = :id');
+		$query->execute(array('nimi' => $this->nimi, 'osoite' => $this->osoite, 'kauppayhtyma_id' => $this->kauppayhtyma_id, 'id' => $id));
 		$row = $query->fetch();
 
 		if($row){

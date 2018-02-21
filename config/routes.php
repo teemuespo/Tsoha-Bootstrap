@@ -28,6 +28,14 @@
     KauppayhtymaController::show($id);
   });
 
+  $routes->get('/kauppayhtymat/:id/muokkaa', function($id){
+    KauppayhtymaController::edit($id);
+  });
+
+  $routes->post('/kauppayhtymat/:id/muokkaa', function($id){
+    KauppayhtymaController::update($id);
+  });
+
   $routes->post('/kauppayhtymat/:id/poista', function($id){
     KauppayhtymaController::destroy($id);
   });

@@ -11,9 +11,9 @@ class KirjautumisController extends BaseController{
     if(!$admin){
       View::make('kirjautuminen/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
     }else{
-      $_SESSION['username'] = $admin->id;
+      $_SESSION['admin'] = $admin->id;
 
-      Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $admin->username . '!'));
+      Redirect::to('/kaupat', array('message' => 'Tervetuloa takaisin ' . $admin->username . '!'));
     }
   }
   public static function logout(){

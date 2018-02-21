@@ -4,17 +4,25 @@
   <form method="post" action="{{base_path}}/kaupat/{{kauppa.id}}/muokkaa">
     <div class="form-group">
       <label>Nimi</label>
-      <input name="nimi" class="form-control" type="text">
+      <input name="nimi" class="form-control" type="text" value="{{kauppa.nimi}}">
     </div>
 
     <div class="form-group">
       <label>Osoite</label>
-      <input name="osoite" class="form-control" type="text">
+      <input name="osoite" class="form-control" type="text" value="{{kauppa.osoite}}">
     </div>
 
     <div class="form-group">
       <label>Kauppayhtymä</label>
-      <input name="kauppayhtyma_id" class="form-control" type="text">
+      <select class="form-control" name="kauppayhtyma_id">
+        {% for kauppayhtyma in kauppayhtymat %}
+          {% if kauppayhtyma.id == kauppa.kauppayhtyma_id %}
+            <option selected value="{{kauppayhtyma.id}}">{{kauppayhtyma.nimi}}</option>
+          {% else %}
+            <option value="{{kauppayhtyma.id}}">{{kauppayhtyma.nimi}}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
     </div>
 
     <div class="form-group">

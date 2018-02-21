@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Muokkaa tietokannassa olevaa kauppayhtymää:</h1>
+  <form method="post" action="{{base_path}}/kauppayhtymat/{{kauppayhtyma.id}}/muokkaa">
+    <div class="form-group">
+      <label>Nimi</label>
+      <input name="nimi" class="form-control" type="text" value="{{kauppayhtyma.nimi}}">
+    </div>
+
+    <div class="form-group">
+      <label>Bonus</label>
+      <input name="bonus" class="form-control" type="text" value="{{kauppayhtyma.bonus}}">
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Päivitä</button>
+    </div>
+  </form>
+{% endblock %}
