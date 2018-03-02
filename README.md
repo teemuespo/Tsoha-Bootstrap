@@ -10,16 +10,17 @@
 Linkkejä sovelluksen eri osiin:
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/kaupat
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/etusivu
-* http://tespo.users.cs.helsinki.fi/tikaharjoitus/tuotehaku
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/tuotteet
+* http://tespo.users.cs.helsinki.fi/tikaharjoitus/kauppayhtymat
 * https://tespo.users.cs.helsinki.fi/tikaharjoitus/tietokantayhteys
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/kirjaudu
 
 Kirjautuminen:
 * http://tespo.users.cs.helsinki.fi/tikaharjoitus/kirjaudu
 Käyttäjätunnus: teemu, salasana: espo
-Poisto ja muokkaustoiminnot tulevat olemaan vain admineille. Tämä ei kuitenkaan valitettavasti toimi vielä.
-HUOM! Älä poista "Ei kuulu kauppayhtymään"-kauppayhtymää!!
+Poisto ja muokkaustoiminnot sekä kauppayhtymien lisääminen toimivat vain admineille.
+
+HUOM! Älä poista "Ei kuulu kauppayhtymään"-kauppayhtymää!! Sitä käytetään kauppojen default-kauppayhtymänä, kun kaupan kauppayhtymä poistetaan. 
 
 ## Työn aihe
 
