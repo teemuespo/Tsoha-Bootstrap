@@ -11,7 +11,7 @@ class HelloWorldController extends BaseController{
     // Testaa koodiasi täällä
     // Kint-luokan dump-metodi tulostaa muuttujan arvon
     /*$kintkauppa = new Kauppa(array(
-      'nimi' => 'k',
+      'nimi' => '',
       'osoite' => '',
       'kauppayhtyma_id' => null
     ));

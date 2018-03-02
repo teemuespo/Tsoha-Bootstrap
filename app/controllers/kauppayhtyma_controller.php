@@ -17,26 +17,34 @@ class KauppayhtymaController extends BaseController{
     // Renderöidään views/suunnitelmat kansiossa sijaitseva tiedosto kauppa.html muuttujan $kaupat datalla
     View::make('/kauppayhtymat/kauppayhtyma.html', array('kauppayhtyma' => $kauppayhtyma, 'kaupat' => $kaupat));
   }
+  public static function validate_bonus($bonus) {
+      $errors = array();
+      if(!(is_numeric($bonus) || $bonus == null)) {
+        $errors[] = 'Bonuksen tulee olla desimaaliluku!';
+      }
+      return $errors;
+  }
   public static function store(){
     // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
     $params = $_POST;
-    // Alustetaan uusi Kauppayhtymä-luokan olion käyttäjän syöttämillä arvoilla
-    $kauppayhtyma = new Kauppayhtyma(array(
+    // Alustetaan uusi Kauppayhtymä-luokan olio käyttäjän syöttämillä arvoilla
+    $attributes = array(
       'nimi' => $params['nimi'],
       'bonus' => $params['bonus']
-    ));
-/*
-    $errors = $kauppayhtyma->errors();
+    );
 
-    if(count($errors) == 0) {   */
-      // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
+    $kauppayhtyma = new Kauppayhtyma($attributes);
+
+    $errors = $kauppayhtyma->errors();
+    $errors = array_merge($errors, KauppayhtymaController::validate_bonus($params['bonus']));
+
+    if(count($errors) == 0) {
       $kauppayhtyma->save();
 
-      // Ohjataan käyttäjä lisäyksen jälkeen kauppayhtymän esittelysivulle
       Redirect::to('/kauppayhtymat' , array('message' => 'Kauppayhtymä on lisätty tietokantaan!'));
-/*    } else {
-      View::make('suunnitelmat/kauppayhtymat/uusi_kauppayhtyma.html', array('errors' => $errors, 'attributes' => $attributes));
-    } */
+    } else {
+      View::make('kauppayhtymat/uusi_kauppayhtyma.html', array('errors' => $errors, 'attributes' => $attributes));
+    }
   } 
   public static function destroy($id){
     $kauppayhtyma = new Kauppayhtyma(array('id' => $id));

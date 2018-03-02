@@ -13,29 +13,32 @@
           $this->{$attribute} = $value;
         }
       }
-      //$this->validators = array('validate_string_length');
+      $this->validators = array('validate_name');
     }
-/*
-    public function validate_string_length($string) {
-      if($string == null) {
-        return 'Kenttä ei saa olla tyhjä!';
+
+    public function validate_name() {
+      $errors = array();
+      if($this->nimi == null || $this->nimi == '') {
+        $errors[] = 'Nimi-kenttä ei saa olla tyhjä!';
       }
-      else if(strlen($string) < 2) {
-        return 'Kentän pituuden tulee olla vähintään  2 merkkiä!';
+      else if(strlen($this->nimi) < 2) {
+        $errors[] = 'Nimen pituuden tulee olla vähintään  2 merkkiä!';
       }
-      return null;
+      return $errors;
     }
 
     public function errors(){
       // Lisätään $errors muuttujaan kaikki virheilmoitukset taulukkona
-      $errors = array();
+      $validate_name = 'validate_name';
 
-      foreach($this->validators as $validator){
+      $errors = array();
+      $errors = array_merge($errors, $this->{$validate_name}());
+
+      /*foreach($this->validators as $validator){
         // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
-        array_push($errors, $validator());
-      }
+      }*/
 
       return $errors;
     }
-*/
+
   }

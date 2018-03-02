@@ -25,18 +25,27 @@ class TuoteController extends BaseController{
     // Renderöidään views/suunnitelmat/tuotteet kansiossa sijaitseva tiedosto tuote.html muuttujan $ostot datalla
     View::make('/tuotteet/tuote.html', array('tuote' => $tuote, 'ostot' => $ostot));
   }
+  
   public static function store(){
     // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
     $params = $_POST;
     // Alustetaan uusi Tuote-luokan olion käyttäjän syöttämillä arvoilla
-    $tuote = new Tuote(array(
+    $attributes = array(
       'nimi' => $params['nimi']
-    ));
+    );
 
-    // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
-    $tuote->save();
+    $tuote = new Tuote($attributes);
 
-    // Ohjataan käyttäjä lisäyksen jälkeen tuotteiden listaus-sivulle
-    Redirect::to('/tuotteet', array('message' => 'Tuote on lisätty tietokantaan!'));
+    $errors = array();
+    array_push($errors, $tuote->errors());
+    //$errors = array_merge($errors, );
+
+    if(count($errors) == 0) {
+      $tuote->save();
+
+      Redirect::to('/tuotteet' , array('message' => 'Tuote on lisätty tietokantaan!'));
+    } else {
+      View::make('suunnitelmat/tuotteet/uusi_tuote.html', array('errors' => $errors, 'attributes' => $attributes));
+    }
   }
 }

@@ -39,27 +39,44 @@ class KauppaController extends BaseController{
   }
 
   public static function show($id){
-    // Haetaan kaikki kaupat tietokannasta
+    // Haetaan kauppa ja kaikki kyseisessä kaupassa tehdyt ostokset tietokannasta
     $kauppa = Kauppa::find($id);
     $ostot = Ostotapahtuma::kaupalla($id);
     // Renderöidään views/suunnitelmat kansiossa sijaitseva tiedosto kauppa.html muuttujan $kaupat datalla
     View::make('/kaupat/kauppa.html', array('kauppa' => $kauppa, 'ostot' => $ostot));
   }
+  public static function validate_address($osoite) {
+      $errors = array();
+      if($osoite == null || $osoite == '') {
+        $errors[] = 'Kenttä ei saa olla tyhjä!';
+      }
+      else if(strlen($osoite) < 10) {
+        $errors[] = 'Osoitteen pituuden tulee olla vähintään  10 merkkiä. Muistathan lisätä kaupungin!';
+      }
+      return $errors;
+  }
   public static function store(){
     // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
     $params = $_POST;
-    // Alustetaan uusi Kauppa-luokan olion käyttäjän syöttämillä arvoilla
-    $kauppa = new Kauppa(array(
+    $kauppayhtymat = Kauppayhtyma::all();
+    
+    $attributes = array(
       'nimi' => $params['nimi'],
       'osoite' => $params['osoite'],
       'kauppayhtyma_id' => $params['kauppayhtyma_id']
-    ));
+    );
 
-    // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
-    $kauppa->save();
+    $kauppa = new Kauppa($attributes);
 
-    // Ohjataan käyttäjä lisäyksen jälkeen kaupan esittelysivulle
-    Redirect::to('/kaupat' , array('message' => 'Kauppa on lisätty tietokantaan!'));
-  }
-  
+    $errors = $kauppa->errors();
+    $errors = array_merge($errors, KauppaController::validate_address($params['osoite']));
+
+    if(count($errors) == 0) {
+      $kauppa->save();
+
+      Redirect::to('/kaupat' , array('message' => 'Kauppa on lisätty tietokantaan!'));
+    } else {
+      View::make('suunnitelmat/kaupat/uusi_kauppa.html', array('errors' => $errors, 'kauppayhtymat' => $kauppayhtymat, 'attributes' => $attributes));
+    }
+  }  
 }

@@ -3,6 +3,13 @@
 {% block content %}
 
 <h1>Kaupat</h1>
+
+{% if message %}
+<div class="alert alert-success">
+  {{message}}
+</div>
+{% endif %}
+
 <p>
   <a href="{{base_path}}/kaupat/uusi" class="btn btn-success">Lisää uusi kauppa tietokantaan.</a>
 </p>

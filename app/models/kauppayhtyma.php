@@ -74,6 +74,9 @@ class Kauppayhtyma extends BaseModel{
 	    // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
 	    $query = DB::connection()->prepare('INSERT INTO Kauppayhtyma (nimi, bonus) VALUES (:nimi, :bonus) RETURNING id');
 	    // Muistathan, että olion attribuuttiin pääse syntaksilla $this->attribuutin_nimi
+	    if($this->bonus == null){
+	    	$this->bonus = 0.00;
+	    }
 	    $query->execute(array('nimi' => $this->nimi, 'bonus' => $this->bonus));
 	    // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
 	    $row = $query->fetch();

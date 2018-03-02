@@ -3,6 +3,12 @@
 {% block content %}
 <h1>Tuotteet</h1>
 
+{% if message %}
+<div class="alert alert-success">
+  {{message}}
+</div>
+{% endif %}
+
 <input placeholder="Hae tuotetta:" type="text">
 <button class="btn btn-danger">Hae</button>
 
