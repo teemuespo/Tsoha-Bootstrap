@@ -1,22 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>Muokkaa tietokannassa olevaa kauppaa:</h1>
-  <form method="post" action="{{base_path}}/kaupat/{{kauppa.id}}/muokkaa">
+
+  {% if errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for error in errors %}
+          <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <form method="post" action="{{base_path}}/kaupat/{{attributes.id}}/muokkaa">
     <div class="form-group">
       <label>Nimi</label>
-      <input name="nimi" class="form-control" type="text" value="{{kauppa.nimi}}">
+      <input name="nimi" class="form-control" type="text" value="{{attributes.nimi}}">
     </div>
 
     <div class="form-group">
       <label>Osoite</label>
-      <input name="osoite" class="form-control" type="text" value="{{kauppa.osoite}}">
+      <input name="osoite" class="form-control" type="text" value="{{attributes.osoite}}">
     </div>
 
     <div class="form-group">
       <label>Kauppayhtymä</label>
       <select class="form-control" name="kauppayhtyma_id">
         {% for kauppayhtyma in kauppayhtymat %}
-          {% if kauppayhtyma.id == kauppa.kauppayhtyma_id %}
+          {% if kauppayhtyma.id == attributes.kauppayhtyma_id %}
             <option selected value="{{kauppayhtyma.id}}">{{kauppayhtyma.nimi}}</option>
           {% else %}
             <option value="{{kauppayhtyma.id}}">{{kauppayhtyma.nimi}}</option>

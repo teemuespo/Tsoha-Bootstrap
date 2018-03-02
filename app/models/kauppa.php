@@ -7,8 +7,7 @@ class Kauppa extends BaseModel{
     	parent::__construct($attributes);
     }
     public static function all(){
-    	 // Alustetaan kysely tietokantayhteydellämme
-    	//$options = array('id' => $options['id']);
+    	// Alustetaan kysely tietokantayhteydellämme
 	    $query = DB::connection()->prepare('SELECT Kauppa.id, Kauppa.nimi, Kauppa.kauppayhtyma_id, Kauppa.osoite, Kauppayhtyma.nimi as kauppayhtyma FROM Kauppa LEFT JOIN Kauppayhtyma ON Kauppa.kauppayhtyma_id = Kauppayhtyma.id');
 	    // Suoritetaan kysely
 	    $query->execute();

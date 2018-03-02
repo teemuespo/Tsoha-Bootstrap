@@ -54,7 +54,12 @@ class KauppayhtymaController extends BaseController{
   }
   public static function edit($id) {
     $kauppayhtyma = Kauppayhtyma::find($id);
-    View::make('/kauppayhtymat/edit.html', array('kauppayhtyma' => $kauppayhtyma));
+    $attributes = array(
+      'id' => $id,
+      'nimi' => $kauppayhtyma->nimi,
+      'bonus' => $kauppayhtyma->bonus
+    );
+    View::make('/kauppayhtymat/edit.html', array('attributes' => $attributes));
   }
   public static function update($id) {
     $params = $_POST;
@@ -67,8 +72,15 @@ class KauppayhtymaController extends BaseController{
 
     $kauppayhtyma = new Kauppayhtyma($attributes);
 
-    $kauppayhtyma->update($id);
+    $errors = $kauppayhtyma->errors();
+    $errors = array_merge($errors, KauppayhtymaController::validate_bonus($params['bonus']));
 
-    Redirect::to('/kauppayhtymat' , array('message' => 'Kauppayhtymää on muokattu onnistuneesti!'));
+    if(count($errors) == 0) {
+      $kauppayhtyma->update($id);
+
+      Redirect::to('/kauppayhtymat' , array('message' => 'Kauppayhtymää on muokattu onnistuneesti.'));
+    } else {
+      View::make('kauppayhtymat/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+    }
   }
 }
