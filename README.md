@@ -3,7 +3,7 @@
 
 * [Linkki sovellukseeni](http://tespo.users.cs.helsinki.fi/tikaharjoitus)
 
-* [Linkki dokumentaatiooni](https://github.com/teemuespo/Tsoha-Bootstrap/tree/master/doc)
+* [Linkki dokumentaatiooni](https://github.com/teemuespo/Tsoha-Bootstrap/blob/master/doc/TiKaHarjoitusty%C3%B6.pdf)
 
 
 
